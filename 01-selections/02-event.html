@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 selections (Event Handling)</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      svg {
+        background-color: bisque;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>Click on a rectangle</p>
+      <svg height="150">
+        <g>
+          <rect width="30" height="30" class="0" />
+          <rect width="30" height="30" class="1" />
+          <rect width="30" height="30" class="2" />
+          <rect width="30" height="30" class="3" />
+        </g>
+      </svg>
+    </div>
+    <button type="button">Move Rectangles</button>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    const rects = d3.selectAll("rect");
+    rects
+      .attr("y", function (_, i, rect) {
+        const height = rect[i].getBBox().height;
+        // Separate rects by double the prev y, except 0
+        return height * i + 10 * i;
+      })
+      .on("click", function () {
+        d3.select(this).style("fill", "orange");
+      });
+
+    d3.select("button").on("click", function () {
+      rects.attr("x", (_, i) => i * 30);
+    });
+  </script>
+</html>

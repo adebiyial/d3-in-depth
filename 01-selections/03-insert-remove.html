@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 selections (Insert and Remove)</title>
+    <style>
+      g.item text {
+        fill: #ff0000;
+        font-size: 70px;
+        text-anchor: middle;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="append">
+      <h1>Append</h1>
+      <svg width="760" height="140">
+        <g transform="translate(70, 70)">
+          <g class="item" transform="translate(0, 0)">
+            <circle r="40" />
+          </g>
+          <g class="item" transform="translate(120, 0)">
+            <circle r="40" />
+          </g>
+        </g>
+      </svg>
+    </div>
+    <div class="insert">
+      <h1>Insert</h1>
+      <svg width="760" height="140">
+        <g transform="translate(70, 70)">
+          <g class="item" transform="translate(0, 0)">
+            <circle r="40" />
+          </g>
+          <g class="item" transform="translate(120, 0)">
+            <circle r="40" />
+          </g>
+        </g>
+      </svg>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    d3.selectAll(".append g.item")
+      .append("text")
+      .text("A")
+      .attr("y", 50)
+      .attr("x", 30);
+    d3.selectAll(".insert g.item")
+      .insert("text", "circle")
+      .text("A")
+      .attr("y", 50)
+      .attr("x", 30);
+  </script>
+</html>

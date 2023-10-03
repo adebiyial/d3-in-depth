@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 selections (Each)</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      svg {
+        background-color: bisque;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p>Click on a rectangle</p>
+      <svg height="150">
+        <g>
+          <rect width="30" height="30" class="0" />
+          <rect width="30" height="30" class="1" />
+          <rect width="30" height="30" class="2" />
+          <rect width="30" height="30" class="3" />
+        </g>
+      </svg>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    d3.selectAll("rect")
+      .each(function (_, i) {
+        const rect = d3.select(this);
+        const { height: rectHeight } = rect.node().getBBox();
+        // Separate rects by double the prev y, except 0
+        rect.attr("y", rectHeight * i + 10 * i);
+      })
+      .on("click", function () {
+        d3.select(this).style("fill", "orange");
+      });
+  </script>
+</html>
