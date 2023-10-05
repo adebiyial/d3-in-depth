@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 data join</title>
+  </head>
+  <body>
+    <svg>
+      <g class="chart"></g>
+    </svg>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    let myData = [40, 10, 20, 60, 30];
+
+    d3.select(".chart") // select DOM element with class .chart
+      .selectAll("circle") // select all DOM elements with element name circle
+      .data(myData) // initialize the data to be joined
+      .join("circle") // join the data to the DOM elements
+      .attr("cx", (_, i) => i * 100)
+      .attr("cy", 50)
+      .attr("r", (d) => 0.5 * d)
+      .style("fill", (d) => (d > 30 ? "orange" : "#f00"));
+  </script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 data join</title>
+  </head>
+  <body>
+    <div>
+      <svg width="600" height="100">
+        <g class="chart"></g>
+      </svg>
+    </div>
+    <button type="button">Update</button>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function getData() {
+      let data = [];
+      let numItems = Math.ceil(Math.random() * 5);
+
+      for (let i = 0; i < numItems; i++) {
+        data.push(Math.random() * 60);
+      }
+
+      return data;
+    }
+
+    let myData = [40, 10, 20, 60, 30];
+
+    function update(data) {
+      d3.select(".chart")
+        .selectAll("circle")
+        .data(data)
+        .join("circle")
+        .attr("cx", (_, i) => i * 100)
+        .attr("cy", 50)
+        .attr("r", (d) => 0.5 * d)
+        .style("fill", (d) => (d > 30 ? "orange" : "#000"));
+    }
+
+    function updateAll() {
+      let myData = getData();
+      update(myData);
+    }
+
+    updateAll();
+
+    d3.select("button").on("click", updateAll);
+  </script>
+</html>

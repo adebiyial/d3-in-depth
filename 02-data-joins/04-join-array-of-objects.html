@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D3 data join</title>
+  </head>
+  <body>
+    <svg width="600" height="100">
+      <g class="chart"></g>
+    </svg>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    let cities = [
+      { name: "London", population: 8674000 },
+      { name: "New York", population: 8406000 },
+      { name: "Sydney", population: 4293000 },
+      { name: "Paris", population: 2244000 },
+      { name: "Beijing", population: 11510000 },
+    ];
+
+    d3.select(".chart")
+      .selectAll("circle")
+      .data(cities)
+      .join("circle")
+      .attr("cx", (_, i) => i * 100)
+      .attr("cy", 50)
+      .attr("r", (d) => {
+        let scaleFactor = 0.000004;
+        return scaleFactor * d.population;
+      })
+      .style("fill", "#000");
+  </script>
+</html>
