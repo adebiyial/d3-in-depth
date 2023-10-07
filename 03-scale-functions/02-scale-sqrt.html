@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Sqrt</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    const scaleSqrt = d3.scaleSqrt().domain([0, 100]).range([0, 30]);
+    [0, 50, 100].map((dp) => console.log(`${dp} to ${scaleSqrt(dp)}`));
+  </script>
+</html>

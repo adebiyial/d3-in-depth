@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clamping</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+
+    const linearScale = d3.scaleLinear().domain([0, 10]).range([0, 100]);
+
+    console.log("Before clamping");
+    logScaleResult([-10, 20], linearScale);
+
+    linearScale.clamp(true);
+
+    console.log("After clamping");
+    logScaleResult([-10, 20], linearScale);
+
+    let linearScale2 = d3
+      .scaleLinear() // Continuous because it outputs continuous data
+      .domain([0, 10]) // Continuous data (Quantitative)
+      .range(["yellow", "red"]); // Nominal data (Qualitative)
+
+    console.log("Doesn't need clamping — range is Nominal");
+    logScaleResult([-10, 0, 10, 20], linearScale2);
+  </script>
+</html>

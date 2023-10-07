@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nice</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+
+    let data = [0.243, 0.584, 0.987, 0.153, 0.433];
+    let linearScale = d3.scaleLinear().domain(d3.extent(data)).range([0, 100]);
+
+    console.log("Before nice");
+    logScaleResult([0, 1, 2, 3, 4, 5, 6, 7, 8], linearScale);
+
+    linearScale.nice();
+
+    console.log("After nice");
+    logScaleResult([0, 1, 2, 3, 4, 5, 6, 7, 8], linearScale);
+  </script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Quantile</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+
+    const data = [0, 5, 7, 10, 20, 30, 35, 40, 60, 62, 65, 70, 80, 90, 100];
+    // const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    let quantileScale = d3
+      .scaleQuantile()
+      .domain(data)
+      .range(["red", "green", "blue"]);
+
+    logScaleResult([0, 5, 7, 10, 20], quantileScale); // red
+    logScaleResult([30, 35, 40, 60, 62], quantileScale); // green
+    logScaleResult([65, 70, 80, 90, 100], quantileScale); // blue
+  </script>
+</html>

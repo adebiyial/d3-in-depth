@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale pow</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    const scaleTime = d3
+      .scaleTime()
+      .domain([new Date(2016, 0, 1), new Date(2017, 0, 1)])
+      .range([0, 700]);
+
+    [new Date(2016, 0, 1), new Date(2016, 6, 1), new Date(2017, 0, 1)].map(
+      (dp) => console.log(`${dp} to ${scaleTime(dp)}`)
+    );
+  </script>
+</html>

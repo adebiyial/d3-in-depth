@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Point</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+    let pointScale = d3
+      .scalePoint()
+      .domain(["Mon", "Tue", "Wed", "Thu", "Fri"])
+      .range([0, 50]);
+
+    logScaleResult(["Mon", "Tue", "Wed", "Thu", "Fri"], pointScale);
+
+    console.log(`Distance is ${pointScale.step()}`);
+  </script>
+</html>

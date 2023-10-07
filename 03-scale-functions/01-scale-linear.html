@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Linear</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    const linearScale = d3.scaleLinear().domain([0, 10]).range([0, 600]);
+    [0, 5, 10].map((dp) =>
+      console.log(`dataPoint: ${dp} -> output: ${linearScale(dp)}`)
+    );
+
+    let linearScale2 = d3
+      .scaleLinear() // Continuous because it outputs continuous data
+      .domain([0, 10]) // Continuous data (Quantitative)
+      .range(["yellow", "red"]); // Nominal data (Qualitative)
+
+    [0, 5, 10].map((dp) =>
+      console.log(`dataPoint: ${dp} -> output: ${linearScale2(dp)}`)
+    );
+  </script>
+</html>

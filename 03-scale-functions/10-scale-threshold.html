@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Threshold</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+
+    let thresholdScale = d3
+      .scaleThreshold()
+      .domain([0, 50, 100])
+      .range(["#ccc", "lightblue", "orange", "#ddd"]);
+
+    thresholdScale(-10); // returns '#ccc'
+    thresholdScale(20); // returns 'lightblue'
+    thresholdScale(70); // returns 'orange'
+    thresholdScale(110); // returns '#ccc'
+
+    logScaleResult([0, -10, 20, 70, 100], thresholdScale); // red
+  </script>
+</html>

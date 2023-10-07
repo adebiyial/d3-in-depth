@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Ordinal</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+    let myData = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
+    let ordinalScale = d3
+      .scaleOrdinal()
+      .domain(myData)
+      .range(["red", "green", "blue"]);
+
+    logScaleResult(["Jan", "Feb", "Mar", "Apr"], ordinalScale);
+
+    let ordinalScale2 = d3.scaleOrdinal().domain(myData).range(d3.schemePaired);
+    logScaleResult(myData, ordinalScale2);
+
+    logScaleResult(["Monday"], ordinalScale);
+    ordinalScale.unknown("Error...");
+    logScaleResult(["Tuesday"], ordinalScale);
+  </script>
+</html>

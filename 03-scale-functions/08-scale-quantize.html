@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Quantize</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+
+    let quantizeScale = d3
+      .scaleQuantize()
+      .domain([0, 100])
+      .range(["lightblue", "orange", "lightgreen", "pink"]);
+
+    logScaleResult([-10, 10, 30, 60, 90, 101], quantizeScale);
+  </script>
+</html>

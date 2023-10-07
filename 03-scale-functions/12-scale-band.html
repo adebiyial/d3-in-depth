@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scale Band</title>
+  </head>
+  <body>
+    <h1>Check the console...</h1>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    function logScaleResult(arr, scaleFn) {
+      arr.forEach((dp) => console.log(`${dp} is ${scaleFn(dp)}`));
+      console.log("");
+    }
+    let bandScale = d3
+      .scaleBand()
+      .domain(["Mon", "Tue", "Wed", "Thu", "Fri"])
+      .range([0, 200]);
+
+    logScaleResult(["Mon", "Tue", "Wed", "Thu", "Fri"], bandScale);
+
+    bandScale.paddingInner(0.05);
+    console.log(bandScale.bandwidth()); // returns 38.38...
+    logScaleResult(["Mon", "Tue"], bandScale);
+  </script>
+</html>
